@@ -59,6 +59,22 @@ sa=3 # created double-numeric
 typeof(sa) #reveals data type as"double"
 str(letters)
 
+#Data Storage Structures
+
+arr.1=array(data=1:24, dim= c(4, 3, 2)) # create array with (4, 3 ,2)
+arr.1
+
+matr= matrix (data= 1:10, nrow=5, ncol=2) # created matrix with 5 rows, and 2 columns
+matr
+# the array is 3D where as the matrix is 2D, so the data in an array can be split-u into multiple "chunks"
+mat4=matr[4,1] # created an object"mat4' that extracts the 4th value from the 1st column in the matrix "matr"
+mat4
+
+arr.1[2,2,2] #extracted 2nd value from 2nd column, from 2nd level in my array
+
+
+
+
 
 
 
