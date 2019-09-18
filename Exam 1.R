@@ -1,4 +1,7 @@
 #Exam 1
+
+#Operators
+
 a=5:14 #created sequence of 10 numbers starting at 5
 length(a) # length=10
 a[c(1,7)] #extracted the 1st and 7th values from object
