@@ -92,9 +92,6 @@ d$sw.density=NULL # removed the "sw.density" column from the data frame
 str(d)
 
 
-objet=5:14
-length(objet)
-qq=objet[1]
-qq
+
 
 
