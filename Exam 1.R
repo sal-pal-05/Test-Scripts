@@ -28,3 +28,24 @@ ser=c(1,2,3,4)
 length(ser)=5
 ser # created a vector "ser" and set the length to =5, when there are only 4 values, so when you ask R to show "ser" there is an NA for the 5th value
 
+
+#conditional Statements
+
+animals=function (x){
+  if (x=="a")
+    "alligator"
+  else if (x=="b")
+    "buck"
+  else if (x=="c")
+    "carocodile"
+  else "tiger"
+}
+animals(x="a")
+animals(x="b")
+animals(x="c")
+animals(x="y")
+
+
+
+
+
