@@ -72,7 +72,21 @@ mat4
 
 arr.1[2,2,2] #extracted 2nd value from 2nd column, from 2nd level in my array
 
+#Working With Data Sets
 
+load(file="test1_data.Rdata") #load data frame
+nrow(d) #reveal the number of rows in the dataset=503441
+ncol(d)#reveal the number of columns in the dataset=18
+class(d$transect.id) # reveal the data type of only the "transect.id" column="character"
+str(d) # numeric (num), factor (Factor), integer(int), POSIXct, and character
+
+d$tow=as.factor(d$tow) # changed tow field from character to factor
+class(d$tow) # reveal data type of "tow"="factor"
+
+d$haul=as.integer(d$haul)# changed "haul" field from numeric to integer
+class(d$haul) # reveal data type of "haul"="integer"
+d$sw.density=NULL # removed the "sw.density" column from the data frame
+str(d)
 
 
 
