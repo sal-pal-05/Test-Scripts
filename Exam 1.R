@@ -46,6 +46,22 @@ animals(x="c")
 animals(x="y")
 
 
+#Object Data Types
+
+letters=as.factor(c('a','b','c','d')) #created factor data type (with 4 levels)
+class(letters) # reveals the type of data of"letters"=factor
+str(letters) # reveals the number of levels of the factor"letters"=4 levels
+char=as.character(c("ant","dog","toy","yam"))
+class(char)# reveals the type of data of"char"=character
+int=as.integer(c(1, 2, 3, 4))# reveals the type of data of"int"=integer
+class(int)
+sa=3 # created double-numeric
+typeof(sa) #reveals data type as"double"
+str(letters)
+
+
+
+
 
 
 
