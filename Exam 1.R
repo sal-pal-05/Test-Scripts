@@ -4,13 +4,13 @@
 
 a=5:14 #created sequence of 10 numbers starting at 5
 length(a) # length=10
-a[c(1,7)] #extracted the 1st and 7th values from object
-b=5;c=11 #assigned extracted values a new object
-c>b #greater than
-b<c #less than
-b>=c # greater than or equal to
-a[c(2,6,9)] #extrcted the 2nd, 6th and9th values
-x=6;y=10;z=13 #assigned extracted values a new object
+b=a[1];c=a[7] #extracted the 1st and 7th values from object and assigned the extracted values each a new object
+b;c 
+c>b #greater than=TRUE
+b<c #less than=TRUE
+b>=c # greater than or equal to=FALSE
+x=a[2];y=a[6];z=a[9] #extrcted the 2nd, 6th and9th values and assigned the extracted values each a new object
+x;y;z 
 ((z+x)*(z+y))/2
 10*(x-y)
 # the 'R' operator for not is "!"
@@ -18,10 +18,10 @@ c%/%b # integer division of (11/5) 5 is in 11 twice, and you disregard the remai
 c%%b # modulus of (11/5) this gives you the remainder,of 11/5 =2.2, which is rounded up to the nearest whole number =1
 b^c # b(5) raised to the power of c(11)= 48828125
 
-"%sal%"=function(r,t) {2*r+5*t}
+"%sal%"=function(r,t) {2*r+5*t} # created operator "%sal%"
 4%sal%6 # working example of operator "sal"
 
-55->p # created object with L to R operator
+55->p # created object with L to R assignment operator
 d=3;k=4;l=5 # created 3 new objects with numbers assigned in single line of code
 d;k;l # print values of d, k and l with one line of code
 0/0 #"NaN "is displayes because 0/0 is not a number
@@ -58,7 +58,7 @@ char=as.character(c("ant","dog","toy","yam"))
 class(char)# reveals the type of data of"char"=character
 int=as.integer(c(1, 2, 3, 4))# reveals the type of data of"int"=integer
 class(int)
-sa=3 # created double-numeric
+sa=as.double(c(3,4,5)) # created double-numeric
 typeof(sa) #reveals data type as"double"
 str(letters)
 
@@ -92,9 +92,9 @@ d$sw.density=NULL # removed the "sw.density" column from the data frame
 str(d)
 
 
-
-
-
-
+objet=5:14
+length(objet)
+qq=objet[1]
+qq
 
 
