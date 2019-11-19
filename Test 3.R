@@ -98,6 +98,7 @@ ddply(.data = d, .variables = "transect.id", function(x){
 
 
 #Section 3
+
 #create custom function
 study.fxn <- function(x){
   
@@ -133,40 +134,42 @@ press = ggplot(d.spac, aes(x = region,y = pressure)) + geom_boxplot() + facet_wr
 press
 
 #Section 5
-d_spac_s = d.spac[d.spac$tow=="s",]
-d_spac_m = d.spac[d.spac$tow=="m",]
-grpby1 = d_spac_s %>% group_by(region) %>% summarise(mean = mean(temp,na.rm = T), sd = sd(temp,na.rm = T))
-grpby2 =d_spac_m %>% group_by(region) %>% summarise(mean = mean(temp,na.rm = T), sd = sd(temp,na.rm = T))
+d_s = d.spac[d.spac$tow=="s",]
+d_m = d.spac[d.spac$tow=="m",]
+plot1 = d_s %>% group_by(region) %>% summarise(mean = mean(temp,na.rm = T), sd = sd(temp,na.rm = T))
+plot2 = d_m %>% group_by(region) %>% summarise(mean = mean(temp,na.rm = T), sd = sd(temp,na.rm = T))
 
-grpby1$f_deg = NA
-grpby1$K_deg = NA
-grpby2$f_deg = NA
-grpby2$K_deg = NA
+plot1$f_deg = NA
+plot1$K_deg = NA
+plot2$f_deg = NA
+plot2$K_deg = NA
 
-for(i in 1:nrow(grpby1)){
-  grpby1[i,]$f_deg = (grpby1[i,]$sd + 32)*(5/9)
-  grpby1[i,]$K_deg = (grpby1[i,]$sd + 273.15)
+for(i in 1:nrow(plot1)){
+  plot1[i,]$f_deg = (plot1[i,]$sd + 32)*(5/9)
+  plot1[i,]$K_deg = (plot1[i,]$sd + 273.15)
 }
 
-for(i in 1:nrow(grpby2)){
-  grpby2[i,]$f_deg = (grpby2[i,]$sd + 32)*(5/9)
-  grpby2[i,]$K_deg = (grpby2[i,]$sd + 273.15)
+for(i in 1:nrow(plot2)){
+  plot2[i,]$f_deg = (plot2[i,]$sd + 32)*(5/9)
+  plot2[i,]$K_deg = (plot2[i,]$sd + 273.15)
 }
 
-##melt the data
+
 library(reshape2)
-m.vars=c("region","tow")
-id.vars = c("region") 
-dm <- melt(d2, id.vars=c("region", "tow"), measure.vars=m.vars)
-total <- merge(grpby1,grpby2,by="sd")
+m.vars=c("temp")
+id.vars = c("region","tow")
+dm <- melt(d, id.vars=id.vars, measure.vars=m.vars)
 
-melt1 = melt(grpby1, id.vars=id.vars, measure.vars=m.vars)
-melt2 = melt(grpby2, id.vars=id.vars, measure.vars=m.vars)
+Melt1 = melt(plot1, id.vars=id.vars, measure.vars=m.vars)
+Melt2 = melt(plot2, id.vars=id.vars, measure.vars=m.vars)
 #Section 6
 
-bar.1=ggplot(melt1,aes(x=variable, y= value)) +geom_bar(stat = "identity", position = "dodge") + facet_grid(.~region)
-bar.1
-bar.2=ggplot(melt2,aes(x= variable, y= value)) +geom_bar(stat = "identity", position = "dodge") + facet_grid(.~region)
-bar.2
 bar.1=ggplot(dm,aes(x=variable, y= value)) +geom_bar(stat = "identity", position = "dodge") + facet_grid(.~region)
 bar.1
+
+##plot on log10 scale
+bar.2=ggplot(dm,aes(x=variable, y= value)) +geom_bar(stat = "identity", position = "dodge") + facet_grid(.~region)+
+scale_x_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x))) +
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+                labels = trans_format("log10", math_format(10^.x))) 
