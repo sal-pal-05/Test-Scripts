@@ -28,6 +28,31 @@ d2 = arrange(d1, transect.id, desc(dateTime))
 
 dir.create("E3_plots")
 
+
+ddply(.data = d1, .variables = c("transect.id"), function(x){
+  
+  name <- unique(x$transect.id)
+  
+  plota <- ggplot(data = x, aes(x = dateTime, y = depth)) +
+    geom_point()+
+    facet_wrap(~tow)
+  # scale_x_datetime(name = "Time", labels = date_format("%H:%M"),
+  #                  breaks = date_breaks("15 min"), minor_breaks = "5 min") +
+  geom_smooth() #add smoother
+  ggtitle(label = name)
+  
+  ggsave(filename = paste0(name,'.png'),
+         plot = plota, width = 4, height = 3, units = 'in',
+         dpi = 300)
+  
+}, .inform = T, .progress = "text")
+
+
+
+
+
+
+
 ggplot(d2, aes(x=dateTime, y=depth)) +
   geom_line(colour="blue") + geom_smooth()
   
