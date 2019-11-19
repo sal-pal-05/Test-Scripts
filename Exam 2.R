@@ -15,7 +15,7 @@ dd
 yy=str_sub(string=date, start=7, end=10)
 yy
 
-fulldate=str_c(yy,mm,dd, sep=" /")
+fulldate=str_c(yy,mm,dd, sep="/")
 fulldate=as.character(fulldate)
 fulldate
 
@@ -94,7 +94,7 @@ sum.team
 
 
 ##bonus
-
+library(reshape2)
 
 
 
